@@ -1,0 +1,105 @@
+/* 现代个人简介设计 - 参考示范图 */
+
+/* 顶部区域背景渐变 */
+.profile-gradient-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 105, 97, 0.1) 0%, rgba(255, 105, 97, 0.3) 100%);
+    z-index: -1;
+    opacity: 0.8;
+}
+
+/* 照片容器增强样式 */
+.photo-container {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin-right: 40px;
+    flex-shrink: 0;
+}
+
+/* 照片背景 - 更现代的设计 */
+.photo-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #74c0fc;
+    border-radius: 50%;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(116, 192, 252, 0.25);
+}
+
+/* 照片装饰 - 光效 */
+.photo-shine {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* 照片装饰 - 点线装饰 */
+.photo-dots {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: -20px;
+    right: -80px;
+    background-image: radial-gradient(circle, #ddd 1px, transparent 1px);
+    background-size: 10px 10px;
+    opacity: 0.3;
+    z-index: 0;
+}
+
+/* 标题样式增强 */
+.intro-content h1 {
+    font-size: 32px;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    display: inline-block;
+}
+
+/* 标题下划线装饰 */
+.intro-content h1::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #74c0fc;
+    border-radius: 3px;
+}
+
+/* 分隔线增强 */
+.intro-divider {
+    width: calc(100% - 15%);
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 60px auto;
+    max-width: 1200px;
+    position: relative;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .profile-gradient-bg {
+        width: 100%;
+        height: 50%;
+    }
+    
+    .photo-dots {
+        right: auto;
+        left: 80px;
+        top: -10px;
+    }
+}

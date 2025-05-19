@@ -1,0 +1,68 @@
+/* 简洁的个人介绍区域样式 */
+.personal-intro-section {
+    padding: 80px 0 0 0;
+    position: relative;
+}
+
+.modern-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 7.5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 文字介绍区域 */
+.intro-content {
+    width: 100%;
+}
+
+.intro-content h1 {
+    font-size: 32px;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    display: inline-block;
+}
+
+/* 标题下划线 */
+.title-underline {
+    width: 40px;
+    height: 3px;
+    background-color: #4169e1;
+    margin-bottom: 20px;
+}
+
+.intro-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+    max-width: 90%;
+}
+
+/* 分隔线 */
+.intro-divider {
+    width: calc(100% - 15%);
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 60px auto;
+    max-width: 1200px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .modern-intro {
+        padding: 20px 5%;
+    }
+    
+    .intro-content h1 {
+        font-size: 28px;
+    }
+    
+    .intro-content p {
+        max-width: 100%;
+    }
+}

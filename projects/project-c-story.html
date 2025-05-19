@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="在线协作白板项目开发故事 - 朵朵个人作品集">
+    <meta name="keywords" content="协作工具,在线白板,WebSockets,实时同步">
+    <meta name="author" content="朵朵">
+    <title>在线协作白板 - 开发故事 | 朵朵作品集</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <!-- 项目详情页特有样式 -->
+    <style>
+        .project-story {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .story-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .story-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .story-meta {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        .story-category {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(65, 105, 225, 0.1);
+            color: #4169e1;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .story-content {
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .story-content p {
+            margin-bottom: 20px;
+        }
+        
+        .story-content h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .story-content h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin: 30px 0 15px;
+        }
+        
+        .story-image {
+            max-width: 100%;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 40px;
+            color: #4169e1;
+            text-decoration: none;
+        }
+        
+        .back-to-home i {
+            margin-right: 5px;
+        }
+        
+        blockquote {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #4169e1;
+            font-style: italic;
+        }
+        
+        .feature-box {
+            background-color: #f8f9ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+            border: 1px solid #e1e5f1;
+        }
+        
+        .feature-box h4 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="project-story">
+            <div class="story-header">
+                <span class="story-category">SaaS / 效率工具</span>
+                <h1 class="story-title">在线协作白板 - 远程协作的实时解决方案</h1>
+                <div class="story-meta">发布于 2023年11月05日 · 阅读时间 15分钟</div>
+            </div>
+            
+            <div class="story-content">
+                <h2>背景与市场需求</h2>
+                <p>2020年全球远程办公的普及使协作工具的需求爆发式增长。我注意到当时市场上的在线白板工具要么功能过于简单，要么价格昂贵且学习曲线陡峭。有明显的市场机会来创建一个平衡了易用性和专业功能的协作白板解决方案。</p>
+                
+                <p>经过市场调研，我发现三个用户最关心的痛点：</p>
+                <ol>
+                    <li>协作时的实时同步性和低延迟</li>
+                    <li>丰富且易用的绘图工具集</li>
+                    <li>无缝集成到现有工作流程中的能力</li>
+                </ol>
+                
+                <h2>产品构思与定位</h2>
+                <p>基于这些发现，我将产品定位为"专为远程团队打造的实时协作白板"，核心特色是低延迟的实时同步和直观的用户界面。我设计了三个差异化的特性：</p>
+                
+                <div class="feature-grid">
+                    <div class="feature-box">
+                        <h4>多人实时协作</h4>
+                        <p>基于WebSockets的低延迟同步，支持多达50人同时编辑，每个用户的光标和操作都可见。</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>智能图形识别</h4>
+                        <p>自动识别手绘图形并转换为规范几何形状，大幅提升非设计专业人士的使用体验。</p>
+                    </div>
+                    <div class="feature-box">
+                        <h4>混合媒体支持</h4>
+                        <p>支持文字、图片、视频、PDF等多种媒体融合展示，满足不同会议场景需求。</p>
+                    </div>
+                </div>
+                
+                <div class="image-placeholder" style="height: 300px; background-color: #eee; display: flex; align-items: center; justify-content: center; margin: 30px 0; border-radius: 8px;">
+                    产品界面截图
+                </div>
+                <p class="image-caption">在线协作白板用户界面</p>
+                
+                <h2>技术挑战与解决方案</h2>
+                <p>开发过程中，我遇到了几个重要的技术挑战：</p>
+                
+                <h3>1. 实时数据同步与冲突解决</h3>
+                <p>多人同时编辑时的数据冲突是最大挑战。我采用了基于操作转换(OT)的算法，配合自定义的冲突解决策略，实现了毫秒级的实时同步，同时保证了数据一致性。</p>
+                
+                <h3>2. 绘图性能优化</h3>
+                <p>白板应用需要处理大量的绘图操作，初期版本在复杂场景下出现明显卡顿。通过实现Canvas层级管理和选择性渲染，我将复杂白板的渲染时间缩短了70%，使应用在中低配置设备上也能流畅运行。</p>
+                
+                <h3>3. 离线支持与数据同步</h3>
+                <p>为解决网络不稳定问题，我实现了完整的离线编辑功能，用户可以在离线状态下继续工作，重新连接后自动同步变更。这一功能利用IndexedDB存储本地操作历史，结合自定义合并算法实现。</p>
+                
+                <h2>开发过程与团队协作</h2>
+                <p>由于项目复杂度高，我组建了一个小型团队，包括：</p>
+                <ul>
+                    <li>前端开发者（我担任）：负责用户界面和客户端逻辑</li>
+                    <li>后端工程师：构建实时服务器和数据存储</li>
+                    <li>UX设计师：优化用户体验和交互流程</li>
+                </ul>
+                
+                <p>我们采用了双周迭代的敏捷开发模式，每个迭代聚焦一个核心功能。整个项目历时4个月，从概念验证到正式发布。</p>
+                
+                <blockquote>
+                    "我们不只是在构建一个白板工具，而是在创造一种远程协作的新方式。"——这是团队在整个开发过程中的共同理念
+                </blockquote>
+                
+                <h2>发布后的用户反馈</h2>
+                <p>产品正式发布后，我们收到了丰富的用户反馈。最受欢迎的三个功能是：</p>
+                <ol>
+                    <li>团队模板库：用户可以创建和共享自定义模板</li>
+                    <li>会议记录自动整理：将白板内容智能转换为结构化笔记</li>
+                    <li>集成第三方工具：与Slack, Trello等工具的无缝对接</li>
+                </ol>
+                
+                <p>第一个月我们获得了超过5000名付费用户，主要来自科技、教育和设计行业。</p>
+                
+                <h2>产品迭代与未来规划</h2>
+                <p>基于用户反馈，我们规划了以下功能迭代：</p>
+                <ul>
+                    <li>支持视频会议直接嵌入白板，实现真正的一站式远程协作</li>
+                    <li>增强AI辅助功能，如手绘识别、内容摘要、自动排版等</li>
+                    <li>开放API和插件系统，让开发者能够扩展白板功能</li>
+                </ul>
+                
+                <p>长期愿景是将这个工具发展成为远程团队协作的核心平台，连接各类生产力工具，成为虚拟办公空间的中心。</p>
+                
+                <h2>技术栈与架构</h2>
+                <p>项目采用了以下技术栈：</p>
+                <ul>
+                    <li><strong>前端</strong>：React + TypeScript + Canvas API</li>
+                    <li><strong>后端</strong>：Node.js + WebSockets + Firebase</li>
+                    <li><strong>基础设施</strong>：AWS (EC2, S3, CloudFront)</li>
+                    <li><strong>监控与分析</strong>：Sentry + Google Analytics</li>
+                </ul>
+                
+                <p>如果您有产品建议或想了解更多技术细节，欢迎通过我的联系方式沟通。</p>
+                
+                <a href="../index.html" class="back-to-home"><i class="ri-arrow-left-line"></i>返回首页</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; <span id="current-year">2024</span> 朵朵. 保留所有权利.</p>
+    </footer>
+    
+    <script src="../assets/js/main.js"></script>
+</body>
+</html> 

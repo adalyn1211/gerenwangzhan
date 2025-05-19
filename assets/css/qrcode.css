@@ -1,0 +1,54 @@
+/* 二维码容器样式 */
+.qrcode-container {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 50px; /* 调整位置，避免遮挡按钮 */
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 100;
+    width: 220px;
+    text-align: center;
+    border: 1px solid #eaeaea;
+}
+
+/* 二维码图片样式 */
+.qrcode-image {
+    width: 180px;
+    height: 180px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 二维码提示文字 */
+.qrcode-tip {
+    font-size: 14px;
+    color: #333;
+    margin-top: 12px;
+    text-align: center;
+    font-weight: 500;
+    padding: 5px 0;
+}
+
+/* 淡入动画效果 */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 确保链接容器是相对定位，这样二维码可以相对于它定位 */
+.project-links {
+    position: relative;
+}

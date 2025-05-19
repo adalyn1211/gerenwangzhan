@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="智能日程管理小程序开发故事 - 朵朵个人作品集">
+    <meta name="keywords" content="小程序开发,前端开发,UI设计,案例分析">
+    <meta name="author" content="朵朵">
+    <title>智能日程管理小程序 - 开发故事 | 朵朵作品集</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <!-- 项目详情页特有样式 -->
+    <style>
+        .project-story {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .story-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .story-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .story-meta {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        .story-category {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(65, 105, 225, 0.1);
+            color: #4169e1;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .story-content {
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .story-content p {
+            margin-bottom: 20px;
+        }
+        
+        .story-content h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .story-content h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin: 30px 0 15px;
+        }
+        
+        .story-image {
+            max-width: 100%;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 40px;
+            color: #4169e1;
+            text-decoration: none;
+        }
+        
+        .back-to-home i {
+            margin-right: 5px;
+        }
+        
+        blockquote {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #4169e1;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="project-story">
+            <div class="story-header">
+                <span class="story-category">小程序 / 工具</span>
+                <h1 class="story-title">智能日程管理小程序开发历程</h1>
+                <div class="story-meta">发布于 2023年12月15日 · 阅读时间 10分钟</div>
+            </div>
+            
+            <div class="story-content">
+                <h2>项目背景</h2>
+                <p>在当今快节奏的生活中，高效的时间管理变得越来越重要。我注意到市场上的日程管理工具要么过于复杂，要么缺乏智能性，无法真正满足用户的个性化需求。基于这一洞察，我决定开发一款融合AI技术的智能日程管理小程序，帮助用户更轻松地规划时间，提高效率。</p>
+                
+                <h2>遇到的挑战</h2>
+                <p>开发过程中，我面临了几个主要挑战：</p>
+                <h3>1. 如何在小程序有限的资源下实现AI功能</h3>
+                <p>微信小程序有体积和性能限制，无法直接集成大型AI模型。我最终选择了云端AI处理方案，通过API调用云服务，将AI分析结果返回小程序前端展示。</p>
+                
+                <h3>2. 用户体验与功能复杂度的平衡</h3>
+                <p>智能日程规划功能本身较为复杂，但小程序用户习惯于简单直观的操作。我通过多轮用户测试，不断优化界面设计和交互流程，最终找到了功能丰富性和易用性之间的平衡点。</p>
+                
+                <div class="image-placeholder" style="height: 300px; background-color: #eee; display: flex; align-items: center; justify-content: center; margin: 30px 0; border-radius: 8px;">
+                    交互设计草图/原型图
+                </div>
+                <p class="image-caption">初期交互设计草图</p>
+                
+                <h2>技术实现</h2>
+                <p>项目主要采用了以下技术栈：</p>
+                <ul>
+                    <li>前端：原生微信小程序框架 + React Native (跨平台版本)</li>
+                    <li>后端：Node.js + Express</li>
+                    <li>AI功能：调用第三方AI服务API，结合自定义算法处理用户日程数据</li>
+                    <li>数据存储：云开发数据库 + 本地缓存</li>
+                </ul>
+                
+                <p>在开发过程中，我特别关注了小程序的性能优化问题，采用了按需加载、数据预缓存等策略，有效提升了用户体验。</p>
+                
+                <blockquote>
+                    "最好的功能是用户感觉不到其存在，却又无法离开它。"——设计阶段我一直遵循的理念
+                </blockquote>
+                
+                <h2>用户反馈与迭代</h2>
+                <p>产品上线后，收到了大量用户反馈，其中最受欢迎的功能是智能时间块推荐和跨平台同步。基于用户反馈，我对产品进行了三次重大迭代：</p>
+                <ol>
+                    <li>增加了更灵活的自定义分类功能</li>
+                    <li>优化了AI推荐算法，提高了准确率</li>
+                    <li>增加了社交分享功能，支持团队协作</li>
+                </ol>
+                
+                <h2>总结与思考</h2>
+                <p>通过这个项目，我不仅提升了技术能力，更深入理解了用户需求与产品设计的重要性。在未来的迭代中，我计划进一步增强AI分析能力，提供更个性化的时间管理方案。</p>
+                <p>如果您有任何建议或想了解更多技术细节，欢迎与我联系。</p>
+                
+                <a href="../index.html" class="back-to-home"><i class="ri-arrow-left-line"></i>返回首页</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; <span id="current-year">2024</span> 朵朵. 保留所有权利.</p>
+    </footer>
+    
+    <script src="../assets/js/main.js"></script>
+</body>
+</html> 

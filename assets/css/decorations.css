@@ -1,0 +1,132 @@
+/* 
+ * 装饰效果样式
+ * 包含网站顶部和底部的不规则高亮色装饰效果
+ * 特点：完全模糊的边缘，与周围环境自然融合
+ */
+
+/* 顶部装饰容器 */
+.decoration-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+    max-width: 100vw; /* 限制最大宽度为视口宽度 */
+}
+
+/* 底部装饰容器 - 二维码下方 */
+.decoration-bottom {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden; /* 改为hidden防止内容溢出 */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    max-width: 100vw; /* 限制最大宽度为视口宽度 */
+}
+
+/* 顶部右上角装饰 - 完全模糊融合 */
+.shape-top-right {
+    position: absolute;
+    top: -300px;
+    right: -300px;
+    width: 1000px;
+    height: 1000px;
+    background: radial-gradient(circle at 85% 15%, 
+        rgba(255, 65, 105, 1) 0%, 
+        rgba(255, 65, 105, 0.9) 5%, 
+        rgba(255, 65, 105, 0.8) 10%, 
+        rgba(255, 65, 105, 0.6) 20%, 
+        rgba(255, 65, 105, 0.4) 30%, 
+        rgba(255, 65, 105, 0.2) 40%, 
+        rgba(255, 65, 105, 0.1) 50%, 
+        rgba(255, 65, 105, 0.05) 60%, 
+        rgba(255, 65, 105, 0.02) 70%, 
+        transparent 80%);
+    filter: blur(120px);
+    mix-blend-mode: screen;
+    opacity: 0.85;
+    animation: subtle-pulse 8s infinite ease-in-out;
+}
+
+/* 底部左下角装饰 - 完全模糊融合 */
+.shape-bottom-left {
+    position: absolute;
+    bottom: -200px;
+    left: -200px;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle at 15% 85%, 
+        rgba(64, 115, 255, 1) 0%, 
+        rgba(64, 115, 255, 0.9) 5%, 
+        rgba(64, 115, 255, 0.8) 10%, 
+        rgba(64, 115, 255, 0.6) 20%, 
+        rgba(64, 115, 255, 0.4) 30%, 
+        rgba(64, 115, 255, 0.2) 40%, 
+        rgba(64, 115, 255, 0.1) 50%, 
+        rgba(64, 115, 255, 0.05) 60%, 
+        rgba(64, 115, 255, 0.02) 70%, 
+        transparent 80%);
+    filter: blur(120px);
+    mix-blend-mode: screen;
+    opacity: 0.85;
+    animation: subtle-float 10s infinite ease-in-out;
+}
+
+/* 底部右下角装饰 - 完全模糊融合 */
+.shape-bottom-right {
+    position: absolute;
+    bottom: -250px;
+    right: -250px;
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle at 85% 85%, 
+        rgba(123, 97, 255, 1) 0%, 
+        rgba(123, 97, 255, 0.9) 5%, 
+        rgba(123, 97, 255, 0.8) 10%, 
+        rgba(123, 97, 255, 0.6) 20%, 
+        rgba(123, 97, 255, 0.4) 30%, 
+        rgba(123, 97, 255, 0.2) 40%, 
+        rgba(123, 97, 255, 0.1) 50%, 
+        rgba(123, 97, 255, 0.05) 60%, 
+        rgba(123, 97, 255, 0.02) 70%, 
+        transparent 80%);
+    filter: blur(120px);
+    mix-blend-mode: screen;
+    opacity: 0.85;
+    animation: subtle-float 12s infinite ease-in-out reverse;
+}
+
+/* 微妙的脉动动画 */
+@keyframes subtle-pulse {
+    0% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: scale(1.03);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+}
+
+/* 微妙的浮动动画 */
+@keyframes subtle-float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

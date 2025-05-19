@@ -1,0 +1,27 @@
+/* 产品分类小标题样式 - 高端精致设计 */
+.project-category-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #333333;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 10px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+/* 分类标签样式 - 已移除圆点 */
+.project-category-label::before {
+    content: ""; /* 移除圆点符号 */
+    margin-right: 0;
+}
+
+/* 标题容器相对定位 */
+.project-header {
+    position: relative;
+}
+
+/* 鼠标悬停效果 */
+.project-category-label:hover {
+    color: #555555;
+}

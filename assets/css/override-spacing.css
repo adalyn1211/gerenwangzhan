@@ -1,0 +1,9 @@
+/* 调整项目描述与横线之间的间距 */
+.project-description {
+    margin-top: -23px !important; /* 使用!important确保优先级最高 */
+}
+
+/* 确保标题与横线之间的间距一致 */
+.project-title {
+    margin-bottom: 15px !important;
+}

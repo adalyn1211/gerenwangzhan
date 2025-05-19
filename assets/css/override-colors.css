@@ -1,0 +1,48 @@
+/* 覆盖所有蓝色样式为深灰色 */
+
+/* 按钮样式覆盖 */
+.link-primary {
+    background-color: #333333 !important;
+    color: white !important;
+}
+
+.link-primary:hover {
+    background-color: #555555 !important;
+}
+
+.link-secondary {
+    color: #333333 !important;
+    border: 1px solid #333333 !important;
+}
+
+.link-secondary:hover {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 返回顶部按钮 */
+#backToTop {
+    background-color: #333333 !important;
+}
+
+#backToTop:hover {
+    background-color: #555555 !important;
+}
+
+/* 其他可能的蓝色元素 */
+a, .project-title, .section-title, .project-category, 
+.personal-intro .details .title, .experience-item .details .work-duration,
+.contact-info a, .project-showcase-item .project-category,
+.project-showcase-item .project-links a, .miniprogram-card .app-info .app-name {
+    color: #333333 !important;
+}
+
+/* 蓝色背景元素 */
+.webtool-card .tool-icon-container {
+    background-color: #333333 !important;
+}
+
+/* 蓝色边框元素 */
+.project-showcase-item .project-links a:hover,
+.project-showcase-item .project-links a:focus {
+    border-bottom-color: #333333 !important;
+}

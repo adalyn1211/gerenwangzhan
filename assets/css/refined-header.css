@@ -1,0 +1,175 @@
+/* 精致简约的顶部区域样式 */
+.personal-intro-section {
+    padding: 60px 0 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 内容容器 */
+.profile-layout {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px 0 100px; /* 增加60px的左内边距，实现整体向右移动60px */
+    z-index: 1;
+}
+
+/* 照片区域 - 简洁设计 (竖版照片) */
+.profile-photo-area {
+    width: 200px;
+    height: 280px;
+    margin-right: 70px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* 增强的毛玻璃质感相框效果 */
+.profile-photo-area {
+    border-radius: 24px; /* 圆角半径 */
+    box-shadow: 0 15px 30px rgba(15, 23, 42, 0.15); /* 增强阴影 */
+    border: 2px solid rgba(255, 255, 255, 0.9); /* 加粗边框并增加不透明度 */
+    overflow: hidden;
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+    position: relative;
+    z-index: 1;
+}
+
+/* 添加双层边框效果 */
+.profile-photo-area::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.1); /* 半透明背景 */
+    backdrop-filter: blur(10px); /* 增强模糊效果 */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    z-index: -1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 鼠标悬停时的边框效果 */
+.profile-photo-area:hover {
+    border-color: #ffffff; /* 鼠标悬停时边框变为纯白色 */
+    transform: translateY(-5px); /* 增强上浮效果 */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); /* 增强阴影 */
+}
+
+/* 鼠标悬停时的外层效果 */
+.profile-photo-area:hover::before {
+    background: rgba(255, 255, 255, 0.2); /* 增强透明度 */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+
+
+
+
+
+
+/* 照片内容区域 */
+.photo-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* 当有真实照片时的样式 - 竖版照片 */
+.photo-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9; /* 让照片看起来像融入背景 */
+    mix-blend-mode: multiply; /* 融合模式，使照片与背景融合 */
+}
+
+.photo-placeholder {
+    color: #aaaaaa;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+/* 个人信息区域 */
+.profile-info-area {
+    flex: 1;
+}
+
+/* 名字样式 */
+.profile-name {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333333;
+    margin: 0 0 20px;
+    position: relative;
+    display: inline-block;
+}
+
+/* 名字下方的线条已删除 */
+.profile-name::after {
+    display: none;
+}
+
+/* 个人描述 */
+.profile-description p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555555;
+    margin: 0;
+    max-width: 90%;
+}
+
+/* 响应式调整 */
+@media (max-width: 900px) {
+    .personal-intro-section {
+        padding: 80px 0 50px;
+    }
+    
+    .profile-layout {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 30px;
+    }
+    
+    .profile-photo-area {
+        margin-right: 0;
+        margin-bottom: 40px;
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .profile-description p {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .personal-intro-section {
+        padding: 60px 0 40px;
+    }
+    
+    .profile-layout {
+        padding: 0 20px;
+    }
+    
+    .profile-name {
+        font-size: 28px;
+    }
+    
+    .profile-photo-area {
+        height: 150px;
+    }
+}

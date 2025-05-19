@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="个人作品集网站生成器开发故事 - 朵朵个人作品集">
+    <meta name="keywords" content="网站开发,前端开发,Vue.js,开源项目">
+    <meta name="author" content="朵朵">
+    <title>个人作品集网站生成器 - 开发故事 | 朵朵作品集</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <!-- 项目详情页特有样式 -->
+    <style>
+        .project-story {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .story-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .story-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .story-meta {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        .story-category {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(65, 105, 225, 0.1);
+            color: #4169e1;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .story-content {
+            line-height: 1.8;
+            color: #444;
+        }
+        
+        .story-content p {
+            margin-bottom: 20px;
+        }
+        
+        .story-content h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .story-content h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin: 30px 0 15px;
+        }
+        
+        .story-image {
+            max-width: 100%;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-top: 40px;
+            color: #4169e1;
+            text-decoration: none;
+        }
+        
+        .back-to-home i {
+            margin-right: 5px;
+        }
+        
+        blockquote {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #4169e1;
+            font-style: italic;
+        }
+        
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="project-story">
+            <div class="story-header">
+                <span class="story-category">Web应用 / 开源工具</span>
+                <h1 class="story-title">个人作品集网站生成器 - 从灵感到开源</h1>
+                <div class="story-meta">发布于 2023年09月20日 · 阅读时间 12分钟</div>
+            </div>
+            
+            <div class="story-content">
+                <h2>项目起源</h2>
+                <p>作为一名前端开发者和设计师，我经常需要更新自己的作品集网站，但每次都要重新设计和开发既费时又容易出错。通过与同行交流，我发现这是许多创意工作者的共同痛点。</p>
+                
+                <p>于是我萌生了开发一个简单易用的作品集网站生成器的想法，让用户只需关注内容创作，而不必担心技术实现细节。这个工具应该简洁、灵活，能够满足不同领域创作者的需求。</p>
+                
+                <h2>设计理念</h2>
+                <p>在设计这个工具时，我确立了几个核心原则：</p>
+                <ul>
+                    <li><strong>简单易用</strong>：无需编程知识，通过直观的界面即可操作</li>
+                    <li><strong>高度自定义</strong>：提供足够的选项让用户打造个性化网站</li>
+                    <li><strong>优雅的默认设计</strong>：即使不进行任何自定义，默认模板也应当美观专业</li>
+                    <li><strong>响应式布局</strong>：自适应各种设备屏幕尺寸</li>
+                    <li><strong>性能优先</strong>：确保生成的网站加载速度快，SEO友好</li>
+                </ul>
+                
+                <div class="image-placeholder" style="height: 300px; background-color: #eee; display: flex; align-items: center; justify-content: center; margin: 30px 0; border-radius: 8px;">
+                    工具界面截图
+                </div>
+                <p class="image-caption">作品集网站生成器管理界面</p>
+                
+                <h2>技术选型与架构</h2>
+                <p>经过充分调研，我选择了以下技术栈构建这个项目：</p>
+                
+                <h3>前端技术</h3>
+                <ul>
+                    <li>Vue.js 3 + Composition API：构建响应式用户界面</li>
+                    <li>Vite：提供快速的开发体验和优化的构建过程</li>
+                    <li>TailwindCSS：实现灵活的样式定制</li>
+                    <li>Markdown支持：让用户可以用熟悉的方式编写内容</li>
+                </ul>
+                
+                <h3>架构设计</h3>
+                <p>整个应用采用了模块化设计，主要包含以下几个部分：</p>
+                
+                <pre><code>项目结构
+├── editor/       # 可视化编辑器
+├── templates/    # 网站模板库
+├── previewer/    # 实时预览组件
+├── exporter/     # 静态网站导出工具
+└── deployment/   # 一键部署功能</code></pre>
+                
+                <p>用户可以选择模板、添加内容、调整样式，实时预览效果，最后导出完整的静态网站文件或直接部署到GitHub Pages等平台。</p>
+                
+                <h2>开发过程中的挑战</h2>
+                <p>在开发过程中，我遇到了几个值得分享的挑战：</p>
+                
+                <h3>1. 实时预览与性能平衡</h3>
+                <p>最初的实时预览功能在复杂内容下会导致明显的性能下降。通过实现虚拟DOM的差异更新和防抖处理，我将预览更新时间从平均300ms优化到了50ms以下。</p>
+                
+                <h3>2. 模板系统的可扩展性</h3>
+                <p>设计一个既灵活又易于理解的模板系统是个挑战。我采用了基于JSON的模板描述格式，并实现了组件继承机制，使模板既可以高度定制又保持了结构的一致性。</p>
+                
+                <blockquote>
+                    "工具的价值不在于它的复杂度，而在于它能让复杂的事情变得简单。"——这是我在整个开发过程中的指导思想
+                </blockquote>
+                
+                <h2>开源与社区反馈</h2>
+                <p>项目在GitHub上开源后，获得了超出预期的关注。社区贡献了多个新模板和功能改进。最受欢迎的功能包括：</p>
+                <ol>
+                    <li>一键部署到Vercel/Netlify</li>
+                    <li>多语言支持</li>
+                    <li>自定义域名配置向导</li>
+                </ol>
+                
+                <p>我特别感谢社区成员的贡献，正是这些反馈使这个工具变得更加完善。</p>
+                
+                <h2>未来规划</h2>
+                <p>基于用户反馈和自己的使用体验，我计划在未来版本中添加以下功能：</p>
+                <ul>
+                    <li>更丰富的交互动效模板</li>
+                    <li>集成分析工具，了解网站访问情况</li>
+                    <li>更多第三方服务集成（如Behance, Dribbble等作品源）</li>
+                    <li>AI辅助内容优化功能</li>
+                </ul>
+                
+                <p>如果您有使用建议或想参与项目开发，欢迎在GitHub上提出issue或PR。</p>
+                
+                <a href="../index.html" class="back-to-home"><i class="ri-arrow-left-line"></i>返回首页</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; <span id="current-year">2024</span> 朵朵. 保留所有权利.</p>
+    </footer>
+    
+    <script src="../assets/js/main.js"></script>
+</body>
+</html> 

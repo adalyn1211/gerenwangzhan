@@ -1,0 +1,908 @@
+body {
+    font-family: "Source Han Sans CN", "思源黑体 CN", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5; /* 统一页面背景色 */
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden; /* 防止横向滚动 */
+    width: 100%;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow-x: hidden; /* 防止容器内容溢出导致横向滚动 */
+    width: 100%;
+    box-sizing: border-box; /* 确保内边距不会增加元素宽度 */
+}
+
+/* Footer style remains, header style is removed */
+footer {
+    padding: 15px 0;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+.section {
+    margin: 4rem 0;
+    padding: 1rem 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 1.8rem;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #6b7280;
+    margin-bottom: 2.5rem;
+}
+
+/* 个人介绍区域 */
+.personal-intro {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.personal-intro .photo {
+    width: 150px;
+    height: 150px;
+    background-color: #87CEFA;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2em;
+    flex-shrink: 0;
+}
+
+.personal-intro .details h1 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.8em;
+    color: #333;
+}
+
+.personal-intro .details .title {
+    font-size: 1.1em;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.personal-intro .details p {
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* 项目作品展示区 */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 响应式网格 */
+    gap: 25px;
+}
+
+.project-card {
+    background-color: #fff;
+    border-radius: 12px; /* 更圆润的角 */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* 小程序项目卡片 - 遵循截图样式 */
+.miniprogram-card .card-header {
+    display: flex;
+    align-items: flex-start; /* 头像和文字顶部对齐 */
+    margin-bottom: 15px;
+}
+
+.miniprogram-card .app-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #e9ecef; /* 占位符背景 */
+    border-radius: 8px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    color: #6c757d;
+    flex-shrink: 0;
+    text-align: center; /* 图标内文字居中 */
+}
+
+.miniprogram-card .app-info .app-name {
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #333333; /* 小程序名字蓝色 */
+    margin-bottom: 4px;
+}
+
+.miniprogram-card .app-info .app-highlight {
+    font-size: 0.9em;
+    color: #28a745; /* 亮点绿色，或用截图中的蓝色 */
+}
+.miniprogram-card .app-info .app-highlight .trophy-icon {
+    margin-right: 5px;
+    color: #ffc107; /* 奖杯黄色 */
+}
+
+
+.miniprogram-card .app-description {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 20px;
+    flex-grow: 1; /* 让描述占据多余空间 */
+}
+
+.miniprogram-card .action-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px; /* 圆角按钮 */
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+    text-decoration: none; /* 如果是链接 */
+    display: inline-block; /* 使其可以设置宽度和居中 */
+    align-self: center; /* 在flex容器中居中 */
+    transition: background-color 0.2s;
+}
+.miniprogram-card .action-button:hover {
+    background-color: #333;
+}
+
+/* 网页/工具类项目卡片 - 遵循截图样式 */
+.webtool-card {
+    display: flex; /* 主轴横向 */
+    align-items: center; /* 交叉轴居中 */
+    gap: 15px;
+}
+.webtool-card .tool-icon-container {
+    width: 60px;
+    height: 60px;
+    background-color: #333333; /* 截图中的蓝色背景 */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.webtool-card .tool-icon-placeholder { /* 示例：用CSS画个九宫格 */
+    width: 30px;
+    height: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+}
+.webtool-card .tool-icon-placeholder div {
+    background-color: white;
+    border-radius: 2px;
+}
+
+.webtool-card .tool-info .tool-name {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+.webtool-card .tool-info .tool-description {
+    font-size: 0.9em;
+    color: #555;
+}
+
+
+/* 过往工作经验 */
+.experience-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.experience-item:last-child {
+    border-bottom: none;
+}
+
+.experience-item .company-photo {
+    width: 100px;
+    height: 100px;
+    background-color: #87CEFA;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1em;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.experience-item .details .job-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #333;
+    margin-top: 0;
+}
+
+.experience-item .details .work-duration {
+    font-size: 0.9em;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.experience-item .details ul {
+    padding-left: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* 联系方式 - 右下角设计 */
+.contact-info-section {
+    padding: 4rem 0;
+    position: relative;
+}
+
+.contact-info-right {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.qr-code-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: -10px; /* 从50px减少到60px，结果为-10px */
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.qrcode-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.contact-text {
+    text-align: right;
+    color: #333;
+    width: 200px; /* 与二维码宽度一致 */
+}
+
+.contact-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.contact-welcome {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #333;
+}
+
+/* 旧的二维码样式已移除，使用上面新的样式 */
+
+/* 分隔线 */
+.divider {
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 2rem 0;
+    width: 100%;
+}
+
+/* 板块间视觉分区线 - 与顶部黑线一致 */
+.section-divider {
+    height: 1px;
+    background-color: #333;
+    margin: 4rem auto;
+    width: 100%;
+    max-width: 1100px;
+}
+
+/* 底部分区线特定样式 - 向上移动30px */
+#contact-divider {
+    margin-top: 2rem !important; /* 4rem - 30px 约等于2rem */
+    margin-bottom: 4rem;
+}
+
+/* Arlen McCluskey inspired project showcase - Updated for row layout */
+.project-showcase-container { /* Renamed from project-showcase-grid */
+    display: flex;
+    flex-direction: column; /* Stack project items vertically */
+    gap: 40px; /* Increased gap between project items */
+    margin-top: 20px;
+}
+
+.project-showcase-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row; /* Arrange video/image and content side-by-side for desktop */
+    align-items: flex-start; /* Align items to the top */
+    gap: 25px; /* Gap between video/image and content */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px; /* Add padding to the item itself for internal spacing */
+}
+.project-showcase-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.project-video-placeholder {
+    flex: 0 0 45%; /* Video/image takes 45% of the width */
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+    background-color: #e0e0e0; /* Placeholder color */
+    position: relative; /* For absolute positioning of img/video */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #757575;
+    font-size: 1.1em;
+    border-radius: 8px; /* Rounded corners for the placeholder */
+    overflow: hidden; /* Clip content like images/videos to the border-radius */
+}
+.project-video-placeholder img,
+.project-video-placeholder video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.project-showcase-item .project-content {
+    /* padding: 20px; */ /* Padding is now on .project-showcase-item */
+    flex: 1; /* Content takes the remaining available space */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-showcase-item .project-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.project-showcase-item .project-category {
+    font-size: 0.85em;
+    color: #333333; /* Blue for category, can be adjusted */
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.project-showcase-item .project-description {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.project-showcase-item .project-tags {
+    margin-bottom: 15px;
+}
+.project-showcase-item .project-tags .tag {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.project-showcase-item .project-links a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #333333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+.project-showcase-item .project-links a:hover {
+    text-decoration: underline;
+}
+
+/* 技能与工具 */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+}
+.skill-item {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+    font-size: 0.9em;
+    color: #333;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .personal-intro {
+        flex-direction: column;
+        text-align: center;
+    }
+    .experience-item {
+        flex-direction: column;
+    }
+    .experience-item .company-photo {
+        margin: 0 auto 15px auto; /* 居中并添加底部边距 */
+    }
+    .webtool-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .webtool-card .tool-icon-container {
+        margin-bottom: 10px;
+    }
+
+    /* Responsive styles for project showcase items */
+    .project-showcase-item {
+        flex-direction: column; /* Stack image/video and content vertically */
+        align-items: stretch; /* Stretch items to fill width */
+        gap: 15px; /* Adjust gap for vertical stacking */
+        padding: 15px; /* Adjust padding for mobile */
+    }
+
+    .project-video-placeholder {
+        flex-basis: auto; /* Reset flex-basis */
+        width: 100%; /* Take full width when stacked */
+        /* aspect-ratio will still apply, ensuring proportional height */
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* 移动端单列显示 */
+    }
+    .project-showcase-container { /* Updated class name */
+        display: block;
+    }
+    .personal-intro .photo {
+        width: 120px;
+        height: 120px;
+    }
+    .personal-intro .details h1 {
+        font-size: 1.6em;
+    }
+    .section-title {
+        font-size: 1.8em;
+    }
+}
+
+/* 重新设计的项目展示区样式，参考第二张图的清晰布局 */
+.project-flat {
+    display: flex;
+    gap: 5px; /* 将间距进一步减小到20px到10px再到5px */
+    margin-bottom: 120px;
+    position: relative;
+}
+
+/* 项目信息区域 */
+.project-info {
+    flex: 1;
+    padding-right: 20px;
+    position: relative;
+}
+
+/* 项目编号与分类 */
+.project-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+/* 项目编号 */
+.project-number {
+    font-size: 5rem;
+    font-weight: 700;
+    opacity: 0.08;
+    position: absolute;
+    top: -45px;
+    left: -20px;
+    z-index: 0;
+    color: #000;
+}
+
+/* 项目标题 */
+.project-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin: 8px 0 16px 0;
+    line-height: 1.3;
+    position: relative;
+    padding-right: 100px;
+}
+
+/* 添加垂直数字显示 */
+.project-title::after {
+    content: attr(data-number);
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #333;
+    line-height: 1;
+}
+
+/* 项目标题分隔线样式 - 新设计 */
+.project-title-container {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+/* 左侧浅色序号 */
+.project-number-light {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #f0f0f0;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    z-index: 0;
+    line-height: 1;
+}
+
+/* 项目标题 */
+.project-title-main {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    padding-right: 80px;
+    position: relative;
+    z-index: 1;
+    line-height: 1.3;
+}
+
+/* 标题和序号分隔线 */
+.title-number-divider {
+    position: absolute;
+    top: 0;
+    right: 70px;
+    width: 2px;
+    height: 100%;
+    background-color: #333;
+    z-index: 1;
+}
+
+/* 右侧序号 */
+.project-number-right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    z-index: 1;
+}
+
+/* 标题下方横线 */
+.title-horizontal-line {
+    height: 2px;
+    background-color: #333;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.project-category {
+    font-size: 0.95rem;
+    color: #333333;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50px;
+    padding: 5px 15px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.project-description {
+    font-size: 1.05rem;
+    color: #555555;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background-color: rgba(203, 213, 225, 0.4);
+    color: #475569;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.project-links {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: auto;
+}
+
+.link-primary {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: #333333; /* 优雅的深灰色 */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px; /* 略微增加圆角 */
+    font-weight: 600;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    border: none;
+}
+
+.link-primary:hover {
+    background-color: #555555;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.link-secondary {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    color: #333333; /* 与主按钮颜色一致 */
+    background-color: transparent;
+    text-decoration: none;
+    border: 1px solid #333333; /* 与主按钮颜色一致 */
+    border-radius: 8px; /* 略微增加圆角 */
+    font-weight: 600;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.link-secondary:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 视频播放器样式 - 与照片边框保持一致的毛玻璃效果 */
+.vertical-screen-placeholder {
+    height: auto; /* 自适应高度 */
+    min-height: 420px; /* 最小高度 */
+    width: 240px; /* 宽度 */
+    max-width: 100%; /* 确保在小屏幕上不会溢出 */
+    background-color: #fff;
+    border-radius: 24px; /* 圆角半径 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    font-size: 1.1rem;
+    box-shadow: 0 15px 30px rgba(15, 23, 42, 0.15); /* 增强阴影 */
+    border: 2px solid rgba(255, 255, 255, 0.9); /* 加粗边框并增加不透明度 */
+    position: relative;
+    overflow: hidden;
+    padding: 0; /* 移除内边距 */
+    margin: 0 auto; /* 居中显示 */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+    z-index: 1;
+}
+
+/* 添加双层边框效果 */
+.vertical-screen-placeholder::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.1); /* 半透明背景 */
+    backdrop-filter: blur(10px); /* 增强模糊效果 */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    z-index: -1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 鼠标悬停时的边框效果 */
+.vertical-screen-placeholder:hover {
+    border-color: #ffffff; /* 鼠标悬停时边框变为纯白色 */
+    transform: translateY(-5px); /* 增强上浮效果 */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); /* 增强阴影 */
+}
+
+/* 鼠标悬停时的外层效果 */
+.vertical-screen-placeholder:hover::before {
+    background: rgba(255, 255, 255, 0.2); /* 增强透明度 */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.vertical-screen-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 改为contain，确保视频完整显示 */
+    background-color: #000; /* 视频背景色，避免空白区域 */
+}
+
+/* 为第三个视频添加特殊样式 */
+.video-container-c {
+    width: 320px; /* 调整宽度，避免溢出 */
+    min-height: 280px; /* 最小高度 */
+    max-height: 600px; /* 最大高度限制 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0; /* 移除负边距 */
+    max-width: 100%; /* 确保不超过容器宽度 */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-overlay:hover {
+    opacity: 1;
+}
+
+.video-play-button {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.video-play-button:hover {
+    background-color: #fff;
+    transform: scale(1.1);
+}
+
+/* 响应式设计 */
+@media (max-width: 900px) {
+    .project-flat {
+        flex-direction: column;
+        padding: 2.5rem 2rem;
+        gap: 2.5rem;
+    }
+    
+    .project-media {
+        order: -1; /* 在移动端，将图片放在文字上方 */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .vertical-screen-placeholder {
+        height: 480px;
+        width: 240px;
+        margin: 0 auto;
+    }
+    
+    .project-title {
+        font-size: 1.8rem;
+    }
+    
+    .project-header {
+        margin-bottom: 1rem;
+    }
+    
+    .project-number {
+        font-size: 2.5rem;
+    }
+    
+    /* 垂直数字位置调整 */
+    .project-title::after {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-flat {
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+    }
+    
+    .project-title {
+        font-size: 1.6rem;
+    }
+    
+    .vertical-screen-placeholder {
+        height: 400px;
+        width: 200px;
+    }
+    
+    .project-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .link-primary, .link-secondary {
+        text-align: center;
+    }
+    
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    /* 移动端垂直数字位置调整 */
+    .project-title::after {
+        font-size: 1.5rem;
+        right: 0;
+    }
+}
+
+/* 补充项目媒体样式 */
+.project-media {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
