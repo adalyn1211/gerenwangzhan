@@ -822,6 +822,31 @@ footer {
 }
 
 /* 响应式设计 */
+/* 竖版视频样式 */
+.vertical-screen-video {
+    width: 100%;
+    max-width: 375px; /* 限制最大宽度 */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+/* 项目媒体容器 */
+.project-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* 竖版占位容器 */
+.vertical-screen-placeholder {
+    width: 100%;
+    max-width: 375px; /* 与视频最大宽度一致 */
+    margin: 0 auto;
+}
+
 @media (max-width: 900px) {
     .project-flat {
         flex-direction: column;
