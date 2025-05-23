@@ -380,7 +380,7 @@
     </div>
                     </div>
                     <div class="project-description" style="margin-top: 10px;">
-                        <p>为儿童设计的趣味性格测试，仅12道题，帮助家长了解孩子的独特优势，匹配性格相似的历史名人，启发孩子认识自己的优点，有效提升自信心。（支持所有浏览器但不支持微信）</p>
+                        <p>为儿童设计的趣味性格测试，仅12道题，帮助家长了解孩子的独特优势，匹配性格相似的历史名人，启发孩子认识自己的优点，有效提升自信心。</p>
                     </div>
                     <div class="project-links">
                         <a href="https://ertong-mbti.netlify.app/" target="_blank" rel="noopener noreferrer" class="link-primary">访问网页</a>
@@ -390,7 +390,17 @@
                 <div class="project-media">
                     <div style="margin-left: 53px;" class="vertical-screen-placeholder project-decoration video-container-c">
                         <!-- 视频播放器 - 自动播放（更新后的视频） -->
-                        <video class="vertical-screen-video" autoplay muted loop playsinline>
+                        <video 
+                            class="vertical-screen-video" 
+                            controls 
+                            playsinline 
+                            webkit-playsinline 
+                            x5-playsinline 
+                            x5-video-player-type="h5-page"
+                            x5-video-player-fullscreen="true"
+                            preload="auto"
+                            style="width:100%;"
+                        >
                             <source src="assets/videos/project_name_demo_v3.mp4" type="video/mp4">
                             您的浏览器不支持视频标签。
                         </video>
