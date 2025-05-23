@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="个人作品集网站，展示前端开发和UI设计作品">
+    <meta name="keywords" content="前端开发,UI设计,作品集,小程序,网站设计">
+    <meta name="author" content="朵朵">
+    <title>朵朵 - 个人作品集</title>
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <meta name="theme-color" content="transparent">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/decorations.css">
+    <!-- 字体图标库 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <!-- 颜色覆盖样式 -->
+    <link rel="stylesheet" href="assets/css/override-colors.css">
+    <!-- 分类标签样式 -->
+    <link rel="stylesheet" href="assets/css/category-label.css">
+    <!-- 间距调整样式 -->
+    <link rel="stylesheet" href="assets/css/override-spacing.css">
+    <!-- 二维码样式 -->
+    <link rel="stylesheet" href="assets/css/qrcode.css">
+    <!-- 精致简约的顶部区域样式 -->
+    <link rel="stylesheet" href="assets/css/refined-header.css">
+    <style>
+        /* 返回顶部按钮样式 */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 40px;
+            height: 40px;
+            background-color: #4169e1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateY(20px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        
+        #backToTop.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        #backToTop:hover {
+            background-color: #555555;
+        }
+        
+        /* 装饰效果已移动到单独的decorations.css文件中 */
+        
+        /* 项目布局 - 精确匹配参考案例 */
+        .project-flat {
+            position: relative;
+            margin-bottom: 120px;
+            display: flex;
+            align-items: center; /* 将文本区域在视频demo高度的居中位置 */
+            gap: 35px; /* 视频demo左边边缘距离文本区域横线最右边的距离 */
+            width: 95%; /* 占据宽度的百分比，留出两边的边距 */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 7.5%; /* 左右各留出7.5%的内边距，确保文本区域和视频demo与页面边缘的距离合适 */
+            box-sizing: border-box; /* 确保内边距不会增加元素宽度 */
+        }
+        
+        .project-left {
+            flex: 1.2;
+            position: relative;
+            padding-right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .project-media {
+            flex: 0.8;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            position: relative;
+            margin-left: 0;
+        }
+        
+        /* 项目标题区域 */
+        .project-header {
+            position: relative;
+            margin-bottom: 40px;
+            margin-top: 120px; /* 保持标题区域的下移，与视频demo高度中间对齐 */
+        }
+        
+        /* 水平线 - 使用伪元素实现 */
+        .project-header::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: #333;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+
+        
+
+        
+        /* 竖线 */
+        .project-divider {
+            display: inline-block;
+            width: 1px;
+            height: 120px;
+            background: #333;
+            opacity: 0.7;
+            position: absolute;
+            bottom: 0; /* 确保底部与横线重合 */
+            left: 75%; /* 固定在横线的3/4位置上 */
+            z-index: 1;
+        }
+        
+        /* 竖线右侧的序号 - 使用伪元素 */
+        .project-divider::after {
+            content: attr(data-number);
+            position: absolute;
+            right: -80px;
+            bottom: 0;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #333;
+            line-height: 1.3;
+            transform: translateY(-50%);
+        }
+        
+        /* 项目标题 */
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #333;
+            max-width: 70%; /* 缩小最大宽度，确保不会与竖线和序号重叠 */
+            word-wrap: break-word; /* 支持长单词换行 */
+            line-height: 1.3; /* 行高调整，使换行更美观 */
+            margin-right: 20px; /* 与竖线保持距离 */
+        }
+        
+        /* 标题容器 */
+        .title-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+        }
+        
+        /* 序号 - 采用完全不影响现有布局的方式 */
+        .project-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #aaa;
+            position: absolute;
+            left: 76%; /* 竖线右侧 */
+            top: -30px; /* 横线上方 */
+            z-index: 10;
+            display: block;
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: transparent;
+            pointer-events: none; /* 确保不会干扰鼠标交互 */
+        }
+        
+        /* 项目描述 */
+        .project-description {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            width: 90%;
+        }
+        
+        .project-description p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin: 0;
+        }
+        
+        /* 链接按钮 */
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .link-primary {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #4169e1;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .link-secondary {
+            display: inline-block;
+            padding: 8px 20px;
+            color: #4169e1;
+            background-color: transparent;
+            text-decoration: none;
+            border: 1px solid #4169e1;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        /* 项目描述 */
+        .project-description {
+            margin-bottom: 25px;
+        }
+        
+        .project-description p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin: 0;
+        }
+        
+        /* 链接按钮 */
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .link-primary {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #4169e1;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .link-secondary {
+            display: inline-block;
+            padding: 8px 20px;
+            color: #4169e1;
+            background-color: transparent;
+            text-decoration: none;
+            border: 1px solid #4169e1;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部角落装饰 - 新设计 -->
+    <div class="decoration-top">
+        <div class="shape-top-right"></div>
+    </div>
+    <div class="container">
+        <!-- 个人介绍区域 - 简洁高级设计 -->
+        <section id="home" class="section personal-intro-section">
+            <div class="profile-layout">
+                <!-- 照片区域 - 简洁设计 -->
+                <div class="profile-photo-area">
+                    <!-- 照片内容区域 -->
+                    <div class="photo-content">
+                        <!-- 隐藏占位文本 -->
+                        <div class="photo-placeholder" style="display: none;">照片区域</div>
+                        
+                        <!-- 显示用户上传的照片 -->
+                        <img id="profile-photo" src="assets/images/profile-photo.jpg" style="display: block;" alt="个人照片">
+                    </div>
+                </div>
+                
+                <!-- 个人信息区域 -->
+                <div class="profile-info-area">
+                    <h1 class="profile-name">朵朵</h1>
+                    <div class="profile-description">
+                        <p>5年儿童教育行业运营，25年成为不会写代码的开发者，用AI赋能个人发展，与孩子共同探索AI时代的学习之旅。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目作品 -->
+        <section id="projects" class="section">
+            <!-- 分隔线替代标题 -->
+            <div style="display: flex; justify-content: center; margin: -30px 0 80px 0;">
+                <div style="height: 1px !important; background-color: #333 !important; margin: 0 auto !important; width: 100% !important; max-width: 1100px !important;"></div>
+            </div>
+            
+            <!-- 项目A -->
+            <div class="project-flat">
+                <div class="project-left">
+                    <div class="project-header">
+                        <div class="title-container" style="position: relative;">
+                            <span class="project-category-label" style="position: absolute; top: -25px; left: 0;">小程序</span>
+                            <span class="project-title">作文思维导图好词助手</span>
+                            <span class="project-divider" data-number="01"></span>
+                        </div>
+                    </div>
+                    <div class="project-description">
+                        <p>解决小学生写作畏难、表达欠逻辑等痛点。输入主题词即可生成思维导图辅助搭建写作框架，并智能推荐好词以丰富表达。已服务1200+用户。（核心功能调取Coze工作流）</p>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="link-primary qrcode-toggle" data-qrcode="qrcode-project-a">体验产品</a>
+                        <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzk2NDA1NzYwMA==&action=getalbum&album_id=3987954123504041985#wechat_redirect" target="_blank" rel="noopener noreferrer" class="link-secondary">产品故事</a>
+                        <!-- 小程序二维码容器 -->
+                        <div id="qrcode-project-a" class="qrcode-container">
+                            <img src="assets/images/qrcodes/project-a-qrcode.jpg" alt="作文思维导图好词助手小程序二维码" class="qrcode-image">
+                            <div class="qrcode-tip">扫码体验小程序</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-media">
+                    <div class="vertical-screen-placeholder">
+                        <!-- 视频播放器 - 自动播放 -->
+                        <video class="vertical-screen-video" autoplay muted loop playsinline>
+                            <source src="assets/videos/project_name_demo_v1.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                        <!-- 项目A装饰已移除 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目B -->
+            <div class="project-flat">
+                <div class="project-left">
+                    <div class="project-header">
+    <div class="title-container" style="position: relative;">
+        <span class="project-category-label" style="position: absolute; top: -25px; left: 0;">小程序</span>
+        <span class="project-title">AI定制英文名</span>
+        <span class="project-divider" data-number="02"></span>
+    </div>
+                    </div>
+                    <div class="project-description" style="margin-top: 10px;">
+                        <p>输入中文名，即可获得定制的5个英文名，每个名字均提供发音指导、详细寓意及与中文名的匹配理由。（调取DeepSeek API提供支持）</p>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="link-primary qrcode-toggle" data-qrcode="qrcode-project-b">体验产品</a>
+                        <a href="https://mp.weixin.qq.com/s/JyhdTQI7p6eDcpRgPZBgSQ" target="_blank" rel="noopener noreferrer" class="link-secondary">产品故事</a>
+                        <!-- 小程序二维码容器 -->
+                        <div id="qrcode-project-b" class="qrcode-container">
+                            <img src="assets/images/qrcodes/project-b-qrcode.jpg" alt="AI定制英文名小程序二维码" class="qrcode-image">
+                            <div class="qrcode-tip">扫码体验小程序</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-media">
+                    <div class="vertical-screen-placeholder project-decoration">
+                        <!-- 视频播放器 - 自动播放 -->
+                        <video class="vertical-screen-video" autoplay muted loop playsinline>
+                            <source src="assets/videos/project_name_demo_v2.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                        <!-- 项目B装饰已移除 -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 项目C -->
+            <div class="project-flat">
+                <div class="project-left">
+                    <div class="project-header">
+    <div class="title-container" style="position: relative;">
+        <span class="project-category-label" style="position: absolute; top: -25px; left: 0;">网页</span>
+        <span class="project-title">儿童趣味性格测试</span>
+        <span class="project-divider" data-number="03"></span>
+    </div>
+                    </div>
+                    <div class="project-description" style="margin-top: 10px;">
+                        <p>为儿童设计的趣味性格测试，仅12道题，帮助家长了解孩子的独特优势，匹配性格相似的历史名人，启发孩子（这是一个静态网站仅支持PC端）</p>
+                    </div>认识自己的优点，有效提升自信心。
+                    <div class="project-links">
+                        <a href="https://ertong-mbti.netlify.app/" target="_blank" rel="noopener noreferrer" class="link-primary">访问网页</a>
+                        <a href="https://mp.weixin.qq.com/s/ZNhYAp9vJ1Jy2mBt0CEuOw" target="_blank" rel="noopener noreferrer" class="link-secondary">产品故事</a>
+                    </div>
+                </div>
+                <div class="project-media">
+                    <div style="margin-left: 53px;" class="vertical-screen-placeholder project-decoration video-container-c">
+                        <!-- 视频播放器 - 自动播放（更新后的视频） -->
+                        <video class="vertical-screen-video" autoplay muted loop playsinline>
+                            <source src="assets/videos/project_name_demo_v3.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                        <!-- 项目C装饰已移除 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 视觉分区线 - 使用更强的内联样式 -->
+        <div style="display: block !important; position: relative !important; height: 1px !important; background-color: #333 !important; margin-top: -60px !important; margin-bottom: 64px !important; margin-left: auto !important; margin-right: auto !important; width: 100% !important; max-width: 1100px !important;"></div>
+
+        <!-- 联系方式 - 右下角设计 -->
+        <section id="contact" class="section contact-info-section">
+            <div class="contact-info-right">
+                <div class="qr-code-container">
+                    <div class="qr-code">
+                        <img src="assets/images/qrcodes/contact-qrcode.jpg" alt="微信二维码" class="qrcode-image">
+                    </div>
+                    <div class="contact-text">
+                        <p class="contact-name">我是朵朵</p>
+                        <p class="contact-welcome">欢迎添加我为好友</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 底部装饰已移除 -->
+
+    <footer>
+        <p>&copy; <span id="current-year">2024</span> 朵朵. 保留所有权利.</p>
+    </footer>
+    
+
+
+    <!-- 返回顶部按钮 -->
+    <div id="backToTop" aria-label="返回页面顶部">
+        <i class="ri-arrow-up-line"></i>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <!-- 二维码显示控制脚本 -->
+    <script src="assets/js/qrcode-display.js"></script>
+</body>
+</html> 

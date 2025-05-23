@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="个人作品集网站，展示前端开发和UI设计作品">
+    <meta name="keywords" content="前端开发,UI设计,作品集,小程序,网站设计">
+    <meta name="author" content="朵朵">
+    <title>朵朵 - 移动版</title>
+    
+    <!-- 基础样式 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+    <style>
+        /* 移动端全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+        
+        section {
+            margin-bottom: 40px;
+        }
+        
+        /* 个人介绍区域 */
+        .personal-intro-section {
+            padding: 50px 0 20px;  /* 增加顶部内边距，减少底部内边距 */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            margin-bottom: 15px;  /* 恢复底部边距 */
+            gap: 15px;
+        }
+        
+        .photo-container {
+            width: 50%;
+            max-width: 180px;
+            position: relative;
+            margin-right: 15px;
+            flex-shrink: 0;
+            aspect-ratio: 3/4;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-container:hover .profile-photo {
+            transform: scale(1.03);
+        }
+        
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+            line-height: 1.2;
+            white-space: nowrap;
+            padding-bottom: 5px;
+        }
+        
+        .profile-intro {
+            width: 100%;
+            font-size: 15px;
+            color: #666;
+            margin: 17px 0 -15px 0;  /* 上边距17px(再减少3px)，下边距-15px */
+            line-height: 1.6;
+            clear: both;
+        }
+        
+        /* 项目展示区域 */
+        .projects-section {
+            padding: 20px 0 10px;  /* 减小底部内边距 */
+        }
+        
+
+        
+        .project-item {
+            margin-bottom: 34px;
+            padding-bottom: 32px !important;  /* 项目底部内边距 */
+            position: relative;
+        }
+        
+        .project-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 25%;
+            height: 1px;
+            background-color: #000000;
+        }
+        
+        /* 最后一个项目样式 */
+        .project-item:last-child {
+            margin-bottom: -25px !important;  /* 使用负边距减少与横线的距离 */
+        }
+        
+        /* 横线基础样式 */
+        .section-divider {
+            background-color: #000000;
+            height: 1px;
+            width: 100%;
+            clear: both;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 清除浮动 */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        .project-info {
+            margin-bottom: 20px;
+        }
+        
+        .project-top-line {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .project-media-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px !important;  /* 视频下方间距 */
+        }
+        
+        /* 项目视频容器 */
+        .project-media-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px !important;
+        }
+        
+        /* 横线 */
+        .section-divider {
+            margin: -15px 0 15px 0 !important;  /* 负的上边距使横线上移 */
+            background-color: #000000;
+            height: 1px;
+            width: 100%;
+            border: none;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-media {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            position: relative;
+            float: left;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .project-video {
+            display: block;
+            width: 52vw; /* 设置为视口宽度的52% */
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .project-content {
+            padding: 0;
+        }
+        
+        .project-category {
+            display: inline;
+            color: #888;  /* 更浅的灰色 */
+            font-size: 14px;  /* 稍小的字号 */
+            font-weight: 400;  /* 更轻的字重 */
+            margin-left: 4px;
+            letter-spacing: 0.5px;  /* 字间距 */
+            text-transform: uppercase;  /* 大写字母 */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  /* 使用系统字体 */
+        }
+        
+        .project-number {
+            display: inline;
+            font-size: 14px;  /* 与分类标签相同的字号 */
+            font-weight: 400;  /* 与分类标签相同的字重 */
+            color: #888;  /* 与分类标签相同的颜色 */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  /* 相同的字体 */
+            letter-spacing: 0.5px;  /* 与分类标签相同的字间距 */
+            margin-right: 4px;  /* 与分类标签的间距 */
+        }
+        
+        .project-header {
+            margin: 10px 0;
+        }
+        
+        .project-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+        
+        .project-description {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+        }
+        
+        .project-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            float: right;
+            width: 40%;
+            padding-left: 5%;
+            justify-content: center;
+            height: 100%;
+            margin-top: 10px;
+        }
+        
+        .link-primary {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #333333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .link-primary:hover {
+            background-color: #555555;
+        }
+        
+        .link-secondary {
+            display: inline-block;
+            padding: 8px 20px;
+            color: #333333;
+            background-color: transparent;
+            text-decoration: none;
+            border: 1px solid #333333;
+            border-radius: 5px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .link-secondary:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        /* 联系方式区域 */
+        .contact-section {
+            width: 100%;
+            padding: 20px 15px 40px;  /* 调整内边距：上20px 左右15px 下40px */
+            margin: 20px 0 0;  /* 添加上边距 */
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        .qr-code-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .qrcode-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin: 0 auto 45px !important;  /* 使用!important确保样式生效 */
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            top: 10px;  /* 尝试使用相对定位来移动 */
+        }
+        
+        .contact-text {
+            text-align: center;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+        
+        .contact-text p {
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+        }
+        
+        .contact-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.3;
+            margin-bottom: 5px;
+        }
+        
+        .contact-welcome {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.3;
+        }
+        
+
+        
+        .contact-text {
+            text-align: center;
+        }
+        
+        .contact-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .contact-welcome {
+            font-size: 15px;
+            color: #666;
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* 背景装饰效果 - 匹配PC端定位 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -300px;
+            right: -300px;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle at 85% 15%, 
+                rgba(255, 65, 105, 0.8) 0%, 
+                rgba(255, 65, 105, 0.6) 15%, 
+                rgba(255, 65, 105, 0.4) 30%, 
+                rgba(255, 65, 105, 0.2) 50%, 
+                transparent 70%);
+            -webkit-backdrop-filter: blur(80px);
+            backdrop-filter: blur(80px);
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            z-index: -1;
+            pointer-events: none;
+            /* 确保在移动设备上不会超出视口 */
+            max-width: 200%;
+            max-height: 200%;
+        }
+        
+        /* 确保内容在装饰层上方 */
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+
+        
+        /* 返回顶部按钮 */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #4169e1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        
+        #backToTop.visible {
+            opacity: 1;
+        }
+        
+        /* 二维码弹窗 */
+        .qrcode-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            z-index: 1001;
+            text-align: center;
+        }
+        
+        .qrcode-popup img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+        }
+        
+        .qrcode-popup .qrcode-tip {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 个人介绍区域 -->
+        <section id="home" class="personal-intro-section">
+            <div class="profile-layout">
+                <div class="profile-header">
+                    <div class="photo-container">
+                        <img src="assets/images/profile-photo.jpg" alt="朵朵的照片" class="profile-photo">
+                    </div>
+                    <h1 class="profile-name">朵朵</h1>
+                </div>
+                <div class="profile-intro">
+                    <p>5年儿童教育行业运营，25年成为不会写代码的开发者，用AI赋能个人发展，与孩子共同探索AI时代的学习之旅。</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 项目展示区域 -->
+        <section id="projects" class="projects-section">
+            <!-- 项目A -->
+            <div class="project-item clearfix">
+                <div class="project-info">
+                    <div class="project-top-line">
+                        <span class="project-number">01</span>
+                        <span class="project-category">小程序</span>
+                    </div>
+                    <div class="project-header">
+                        <h2 class="project-title">作文思维导图好词助手</h2>
+                    </div>
+                    <div class="project-description">
+                        <p>解决小学生写作畏难、表达欠逻辑等痛点。输入主题词即可生成思维导图辅助搭建写作框架，并智能推荐好词以丰富表达。已服务1300+用户。（核心功能调取Coze工作流）</p>
+                    </div>
+                </div>
+                <div class="project-media-container clearfix">
+                    <div class="project-media">
+                        <video class="project-video" autoplay muted loop playsinline preload="metadata">
+                            <source src="assets/videos/project_name_demo_v1.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="link-primary qrcode-toggle" data-qrcode="qrcode-project-a">体验产品</a>
+                        <a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzk2NDA1NzYwMA==&action=getalbum&album_id=3987954123504041985#wechat_redirect" target="_blank" rel="noopener noreferrer" class="link-secondary">产品故事</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目B -->
+            <div class="project-item clearfix">
+                <div class="project-info">
+                    <div class="project-top-line">
+                        <span class="project-number">02</span>
+                        <span class="project-category">小程序</span>
+                    </div>
+                    <div class="project-header">
+                        <h2 class="project-title">AI定制英文名</h2>
+                    </div>
+                    <div class="project-description">
+                        <p>输入中文名，即可获得定制的5个英文名，每个名字均提供发音指导、详细寓意及与中文名的匹配理由。（调取DeepSeekAPI提供支持）</p>
+                    </div>
+                </div>
+                <div class="project-media-container clearfix">
+                    <div class="project-media">
+                        <video class="project-video" autoplay muted loop playsinline preload="metadata">
+                            <source src="assets/videos/project_name_demo_v2.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="link-primary qrcode-toggle" data-qrcode="qrcode-project-b">体验产品</a>
+                        <a href="https://mp.weixin.qq.com/s/JyhdTQI7p6eDcpRgPZBgSQ" target="_blank" rel="noopener noreferrer" class="link-secondary">产品故事</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目C -->
+            <div class="project-item clearfix last-project">
+                <div class="project-info">
+                    <div class="project-top-line">
+                        <span class="project-number">03</span>
+                        <span class="project-category">网页</span>
+                    </div>
+                    <div class="project-header">
+                        <h2 class="project-title">儿童趣味性格测试</h2>
+                    </div>
+                    <div class="project-description">
+                        <p>为儿童设计的趣味性格测试，仅12道题，帮助家长了解孩子的独特优势，匹配性格相似的历史名人，启发孩子认识自己的优点，有效提升自信心。（支持所有浏览器但不支持微信）</p>
+                    </div>
+                </div>
+                <div class="project-media-container clearfix">
+                    <div class="project-media">
+                        <video class="project-video" autoplay muted loop playsinline preload="metadata">
+                            <source src="assets/videos/project_name_demo_v3.mp4" type="video/mp4">
+                            您的浏览器不支持视频标签。
+                        </video>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://ertong-mbti.netlify.app/" target="_blank" rel="noopener noreferrer" class="link-primary">访问网页</a>
+                        <a href="https://mp.weixin.qq.com/s/ZNhYAp9vJ1Jy2mBt0CEuOw" target="_blank" rel="noopener noreferrer" class="link-secondary">产品故事</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 联系方式区域 -->
+        <section id="contact" class="contact-section">
+            <div class="qr-code-container">
+                <img src="assets/images/qrcodes/contact-qrcode.jpg" alt="微信二维码" class="qrcode-image">
+                <div class="contact-text">
+                    <p class="contact-name">我是朵朵</p>
+                    <p class="contact-welcome">欢迎添加我为好友</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 强制设置样式 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取最后一个项目
+            const lastProject = document.querySelector('.project-item:last-child');
+            if (lastProject) {
+                lastProject.style.marginBottom = '30px';
+                lastProject.style.paddingBottom = '20px';
+            }
+
+            // 获取横线
+            const divider = document.querySelector('.section-divider');
+            if (divider) {
+                divider.style.margin = '30px 0';
+                divider.style.display = 'block';
+            }
+        });
+    </script>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; <span id="current-year">2024</span> 朵朵. 保留所有权利.</p>
+    </footer>
+
+    <!-- 背景装饰元素通过伪元素实现 -->
+    
+    <!-- 返回顶部按钮 -->
+    <div id="backToTop" aria-label="返回页面顶部">
+        <i class="ri-arrow-up-line"></i>
+    </div>
+
+    <!-- 二维码弹窗 -->
+    <div class="overlay"></div>
+    <div id="qrcode-project-a" class="qrcode-popup">
+        <img src="assets/images/qrcodes/project-a-qrcode.jpg" alt="项目A二维码">
+        <div class="qrcode-tip">扫码体验小程序</div>
+    </div>
+    <div id="qrcode-project-b" class="qrcode-popup">
+        <img src="assets/images/qrcodes/project-b-qrcode.jpg" alt="项目B二维码">
+        <div class="qrcode-tip">扫码体验小程序</div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 设置当前年份
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 二维码弹窗
+        const qrcodeToggles = document.querySelectorAll('.qrcode-toggle');
+        const overlay = document.querySelector('.overlay');
+        
+        qrcodeToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const qrcodeId = toggle.getAttribute('data-qrcode');
+                const qrcodePopup = document.getElementById(qrcodeId);
+                
+                qrcodePopup.style.display = 'block';
+                overlay.style.display = 'block';
+            });
+        });
+        
+        overlay.addEventListener('click', () => {
+            document.querySelectorAll('.qrcode-popup').forEach(popup => {
+                popup.style.display = 'none';
+            });
+            overlay.style.display = 'none';
+        });
+
+        // 检测是否为PC设备，如果是则重定向到PC版
+        // 注意：这段代码在开发阶段被注释掉，完成后再启用
+        /*
+        function isPCDevice() {
+            return window.innerWidth > 768 && 
+                  !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+        
+        if (isPCDevice() && !window.location.href.includes('index.html')) {
+            window.location.href = 'index.html';
+        }
+        */
+    </script>
+</body>
+</html>
