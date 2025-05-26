@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频测试</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        video {
+            border: 1px solid #000;
+            background-color: #000;
+            display: block;
+            object-fit: contain;
+            margin: 10px 0;
+        }
+        #debugInfo {
+            color: #333;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .play-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007AFF;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .play-button:hover {
+            background-color: #0062cc;
+        }
+    </style>
+</head>
+<body>
+    <div id="debugInfo"></div>
+    <div class="play-button" onclick="playVideo()">点击播放视频</div>
+    <video 
+        id="testVideo" 
+        width="320" 
+        height="568" 
+        playsinline 
+        muted
+        preload="metadata"
+        controls>
+        <source src="assets/videos/project_name_demo_v1.mp4" type="video/mp4">
+        您的浏览器不支持视频标签。
+    </video>
+
+    <script>
+        const debugDiv = document.getElementById('debugInfo');
+        
+        function logDebug(message) {
+            const now = new Date().toLocaleTimeString();
+            debugDiv.innerHTML += `${now}: ${message}<br>`;
+        }
+
+        const video = document.getElementById('testVideo');
+        if (video) {
+            logDebug('视频元素已找到');
+            
+            // 监听错误事件
+            video.addEventListener('error', function(e) {
+                logDebug('视频加载错误: ' + e.target.error.code);
+            });
+            
+            // 监听加载事件
+            video.addEventListener('loadstart', function() {
+                logDebug('开始加载视频');
+            });
+            
+            video.addEventListener('loadeddata', function() {
+                logDebug('视频数据加载完成');
+            });
+            
+            video.addEventListener('canplay', function() {
+                logDebug('视频可以播放');
+                // 设置视频尺寸
+                video.width = 320;
+                video.height = 568;
+                // 尝试自动播放
+                tryAutoPlay();
+            });
+            
+            // 尝试加载视频
+            video.load();
+        } else {
+            logDebug('未找到视频元素');
+        }
+
+        function tryAutoPlay() {
+            // 尝试自动播放
+            video.play().catch(error => {
+                logDebug('自动播放失败: ' + error);
+                // 在安卓微信中，自动播放需要用户交互
+                if (error.name === 'NotAllowedError') {
+                    logDebug('需要用户交互才能播放');
+                }
+            });
+        }
+
+        function playVideo() {
+            logDebug('用户点击播放');
+            video.play().catch(error => {
+                logDebug('播放失败: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -251,11 +251,10 @@
             gap: 15px;
             float: right;
             width: 40%;
+            padding-left: 5%;
             justify-content: center;
             height: 100%;
             margin-top: 10px;
-            margin-left: 15px;
-            text-align: center;
         }
         
         .link-primary {
@@ -285,8 +284,6 @@
             font-weight: 500;
             font-size: 15px;
             transition: background-color 0.3s ease;
-            text-align: center;
-            line-height: 1.2;
         }
         
         .link-secondary:hover {
@@ -509,18 +506,17 @@
                 <div class="project-media-container clearfix">
                     <div class="project-media">
                         <video 
-                            id="video1" 
                             class="project-video" 
-                            data-id="1"
-                            loop
-                            playsinline
-                            preload="metadata"
-                            autoplay
-                            muted
-                            data-wxvideo="true"
-                            data-wxvideo-playsinline="true"
+                            controls 
+                            playsinline 
+                            webkit-playsinline 
+                            x5-playsinline 
+                            x5-video-player-type="h5-page"
+                            x5-video-player-fullscreen="true"
+                            preload="auto"
+                            style="width:100%;"
                         >
-                            <source src="assets/videos/project_name_demo_v1.mp4" type="video/mp4" />
+                            <source src="assets/videos/project_name_demo_v1.mp4" type="video/mp4">
                             您的浏览器不支持视频标签。
                         </video>
                     </div>
@@ -548,12 +544,8 @@
                 <div class="project-media-container clearfix">
                     <div class="project-media">
                         <video 
-                            id="video2" 
                             class="project-video" 
-                            data-id="2"
-                            autoplay 
-                            muted 
-                            loop
+                            controls 
                             playsinline 
                             webkit-playsinline 
                             x5-playsinline 
@@ -562,7 +554,7 @@
                             preload="auto"
                             style="width:100%;"
                         >
-                            <source src="assets/videos/project_name_demo_v2.mp4" type="video/mp4" />
+                            <source src="assets/videos/project_name_demo_v2.mp4" type="video/mp4">
                             您的浏览器不支持视频标签。
                         </video>
                     </div>
@@ -590,12 +582,8 @@
                 <div class="project-media-container clearfix">
                     <div class="project-media">
                         <video 
-                            id="video3" 
                             class="project-video" 
-                            data-id="3"
-                            autoplay 
-                            muted 
-                            loop
+                            controls 
                             playsinline 
                             webkit-playsinline 
                             x5-playsinline 
@@ -604,7 +592,7 @@
                             preload="auto"
                             style="width:100%;"
                         >
-                            <source src="assets/videos/project_name_demo_v3.mp4" type="video/mp4" />
+                            <source src="assets/videos/project_name_demo_v3.mp4" type="video/mp4">
                             您的浏览器不支持视频标签。
                         </video>
                     </div>
@@ -632,37 +620,6 @@
 
     <!-- 强制设置样式 -->
     <script>
-        // 设置视频尺寸
-        function setVideoDimensions() {
-            const videos = document.querySelectorAll('.project-video');
-            videos.forEach(video => {
-                video.style.width = '52vw';
-                video.style.maxWidth = '100%';
-            });
-        }
-
-        // 页面加载时设置视频尺寸
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取最后一个项目
-            const lastProject = document.querySelector('.project-item:last-child');
-            if (lastProject) {
-                lastProject.style.marginBottom = '30px';
-                lastProject.style.paddingBottom = '20px';
-            }
-
-            // 获取横线
-            const divider = document.querySelector('.section-divider');
-            if (divider) {
-                divider.style.margin = '30px 0';
-                divider.style.display = 'block';
-            }
-
-            // 设置视频尺寸
-            setVideoDimensions();
-        });
-
-        // 窗口大小改变时更新视频尺寸
-        window.addEventListener('resize', setVideoDimensions);
         document.addEventListener('DOMContentLoaded', function() {
             // 获取最后一个项目
             const lastProject = document.querySelector('.project-item:last-child');
@@ -761,148 +718,5 @@
         }
         */
     </script>
-    <script>
-            // 微信浏览器自动播放处理
-            document.addEventListener('DOMContentLoaded', function() {
-                // 检测微信浏览器
-                function isWechat() {
-                    const ua = navigator.userAgent.toLowerCase();
-                    return ua.indexOf('micromessenger') !== -1;
-                }
-
-                // 检测安卓微信
-                function isAndroidWechat() {
-                    const ua = navigator.userAgent.toLowerCase();
-                    return ua.indexOf('micromessenger') !== -1 && ua.indexOf('android') !== -1;
-                }
-
-                if (isWechat()) {
-                    // 微信浏览器中，尝试自动播放视频
-                    function tryPlayVideo(videoId) {
-                        const video = document.getElementById(videoId);
-                        if (video) {
-                            if (isAndroidWechat()) {
-                                // 安卓微信的处理
-                                // 添加播放按钮
-                                if (!video.hasAttribute('data-play-button')) {
-                                    const button = document.createElement('div');
-                                    button.className = 'video-play-button';
-                                    button.style.cssText = `
-                                        position: absolute;
-                                        top: 50%;
-                                        left: 50%;
-                                        transform: translate(-50%, -50%);
-                                        width: 40px;
-                                        height: 40px;
-                                        background: rgba(0, 0, 0, 0.5);
-                                        border-radius: 50%;
-                                        cursor: pointer;
-                                        z-index: 10;
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        color: white;
-                                    `;
-                                    
-                                    // 添加三角形播放图标
-                                    const icon = document.createElement('div');
-                                    icon.style.cssText = `
-                                        width: 0;
-                                        height: 0;
-                                        border-top: 8px solid transparent;
-                                        border-bottom: 8px solid transparent;
-                                        border-left: 12px solid white;
-                                    `;
-                                    button.appendChild(icon);
-
-                                    // 添加点击事件
-                                    button.addEventListener('click', () => {
-                                        video.play().catch(error => {
-                                            console.log('播放失败:', error);
-                                        });
-                                    });
-
-                                    // 添加视频播放事件监听
-                                    video.addEventListener('play', () => {
-                                        button.style.display = 'none';
-                                    });
-
-                                    // 添加视频暂停事件监听
-                                    video.addEventListener('pause', () => {
-                                        button.style.display = 'flex';
-                                    });
-
-                                    video.parentNode.insertBefore(button, video);
-                                    video.setAttribute('data-play-button', 'true');
-                                }
-                            } else {
-                                // iOS微信的处理
-                                // 直接自动播放
-                                video.play();
-                            }
-                        }
-                    }
-                    
-                    // 尝试播放所有视频
-                    tryPlayVideo('video1');
-                    tryPlayVideo('video2');
-                    tryPlayVideo('video3');
-                    // 确保所有视频都被处理
-                    const videos = document.querySelectorAll('video');
-                    videos.forEach(video => {
-                        tryPlayVideo(video.id);
-                    });
-                    
-                    // 用户触摸屏幕后再次尝试播放
-                    document.addEventListener('touchstart', function() {
-                        // 用户交互后尝试播放所有视频
-                        const videos = document.querySelectorAll('video');
-                        videos.forEach(video => {
-                            tryPlayVideo(video.id);
-                        });
-                    }, { once: true });
-                }
-            });
-        </script>
-        <script>
-            // 添加视频平台兼容性处理
-            document.addEventListener('DOMContentLoaded', function() {
-                const videos = document.querySelectorAll('.project-video');
-                
-                // 检测平台并添加相应属性
-                videos.forEach(video => {
-                    if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-                        // iOS设备
-                        video.setAttribute('webkit-playsinline', '');
-                    } else if (navigator.userAgent.match(/QQBrowser/i)) {
-                        // QQ浏览器
-                        video.setAttribute('x5-playsinline', '');
-                        video.setAttribute('x5-video-player-type', 'h5-page');
-                    }
-                });
-            });
-        </script>
-        <script>
-            // 简单的自动播放视频A
-            document.addEventListener('DOMContentLoaded', function() {
-                // 获取视频元素
-                const videoA = document.getElementById('video0');
-                
-                if (videoA) {
-                    // 设置视频静音（大多数浏览器要求静音才能自动播放）
-                    videoA.muted = true;
-                    
-                    // 尝试播放
-                    const playPromise = videoA.play();
-                    
-                    // 如果播放被拒绝，添加一个播放按钮
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => {
-                            console.log('自动播放被阻止，需要用户交互');
-                        });
-                    }
-                }
-            });
-        </script>
-    </body>
+</body>
 </html>

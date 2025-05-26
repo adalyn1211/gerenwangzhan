@@ -6,7 +6,7 @@
     <meta name="description" content="个人作品集网站，展示前端开发和UI设计作品">
     <meta name="keywords" content="前端开发,UI设计,作品集,小程序,网站设计">
     <meta name="author" content="朵朵">
-    <title>朵朵 - 个人作品集</title>
+    <title>朵朵的个人网站</title>
     <!-- Favicon -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <meta name="theme-color" content="transparent">
@@ -325,7 +325,17 @@
                 <div class="project-media">
                     <div class="vertical-screen-placeholder">
                         <!-- 视频播放器 - 自动播放 -->
-                        <video class="vertical-screen-video" autoplay muted loop playsinline>
+                        <video 
+                            class="vertical-screen-video" 
+                            autoplay muted loop 
+                            playsinline 
+                            webkit-playsinline 
+                            x5-playsinline 
+                            x5-video-player-type="h5-page"
+                            x5-video-player-fullscreen="true"
+                            preload="auto"
+                            style="width:100%;"
+                        >
                             <source src="assets/videos/project_name_demo_v1.mp4" type="video/mp4">
                             您的浏览器不支持视频标签。
                         </video>
@@ -360,7 +370,17 @@
                 <div class="project-media">
                     <div class="vertical-screen-placeholder project-decoration">
                         <!-- 视频播放器 - 自动播放 -->
-                        <video class="vertical-screen-video" autoplay muted loop playsinline>
+                        <video 
+                            class="vertical-screen-video" 
+                            autoplay muted loop 
+                            playsinline 
+                            webkit-playsinline 
+                            x5-playsinline 
+                            x5-video-player-type="h5-page"
+                            x5-video-player-fullscreen="true"
+                            preload="auto"
+                            style="width:100%;"
+                        >
                             <source src="assets/videos/project_name_demo_v2.mp4" type="video/mp4">
                             您的浏览器不支持视频标签。
                         </video>
@@ -392,7 +412,7 @@
                         <!-- 视频播放器 - 自动播放（更新后的视频） -->
                         <video 
                             class="vertical-screen-video" 
-                            controls 
+                            autoplay muted loop 
                             playsinline 
                             webkit-playsinline 
                             x5-playsinline 
